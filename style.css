@@ -236,13 +236,13 @@ header nav.active ~ .menu_toggle span:nth-child(1) {
 }
 
 section {
-    padding: 20px;
+    padding: 40px 20px;
 }
 
 #splash {
     grid-area: splash;
     height: calc(100vh - 80px);
-    width: 100vw;
+    width: 100%;
     overflow: hidden;
     position: relative;
 }
@@ -260,6 +260,7 @@ section {
 
 #splash video {
     min-height: 100%;
+    min-width: 100%;
     position: absolute;
     top: 0;
     left: 50%;
@@ -326,5 +327,205 @@ section {
     color: #fff;
 }
 
+.gallery {
+    padding: 0;
+}
 
-@media {}
+.gallery .description {
+    padding: 40px 20px 100px;
+    position: relative;
+}
+
+/*.gallery:nth-of-type(2n+1)*/
+.gallery1,
+.gallery3 {
+    background-color: #1d1c2c;
+    color: #fff;
+}
+
+/*.gallery:nth-of-type(2n)*/
+.gallery2,
+.gallery4 {
+    background-color: #fff;
+    color: #000;
+}
+
+/*.gallery:nth-of-type(2n+1) .line:before*/
+.gallery1 .line:before,
+.gallery3 .line:before {
+    border-color: #fff;
+}
+
+.gallery2 .line:before,
+.gallery4 .line:before {
+    border-color: #000;
+}
+
+/*.gallery h2,
+.gallery p {
+    padding-left: 20px;
+    padding-right: 20px;
+}*/
+
+.take-contact {
+    font-size: 1.6rem;
+    margin-top: 40px;
+    /*position: relative;
+    left: -10px;*/
+}
+
+.gallery .tabs {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 20px;
+    font-size: 0;
+    border-bottom: 5px solid #9d4e15;
+    color: #fff;
+}
+
+.gallery .tab {
+    display: inline-block;
+    padding: 10px;
+    background-color: #000;
+}
+
+.gallery .tab.active {
+    background-color: #9d4e15;
+}
+
+.gallery .images {
+    position: relative;
+}
+
+.slider {
+    position: relative;
+    height: 320px;
+    width: 100%;
+    overflow: hidden;
+    display: none;
+}
+
+.slider.active {
+    display: block;
+}
+
+.slider img {
+    width: 100%;
+    height: auto;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.slide.active {
+    left: 0;
+}
+
+.slide.prev {
+    left: -100%;
+}
+
+.slide.next {
+    left: 100%;
+}
+
+.slider_dots {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 100%);
+    justify-content: center;
+}
+
+.slider_dots .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+    align-self: center;
+    margin-right: 10px;
+}
+
+.slider_dots .dot:last-of-type {
+    margin-right: 0;
+}
+
+.slider.active[data-active="1"] ~ .slider_dots .dot[data-slide="1"],
+.slider.active[data-active="2"] ~ .slider_dots .dot[data-slide="2"],
+.slider.active[data-active="3"] ~ .slider_dots .dot[data-slide="3"],
+.slider.active[data-active="4"] ~ .slider_dots .dot[data-slide="4"],
+.slider.active[data-active="5"] ~ .slider_dots .dot[data-slide="5"],
+.slider.active[data-active="6"] ~ .slider_dots .dot[data-slide="6"],
+.slider.active[data-active="7"] ~ .slider_dots .dot[data-slide="7"],
+.slider.active[data-active="8"] ~ .slider_dots .dot[data-slide="8"] {
+    background-color: #9d4e15;
+}
+
+.slider.active[data-slides="1"] ~ .slider_dots .dot:nth-of-type(n+2),
+.slider.active[data-slides="2"] ~ .slider_dots .dot:nth-of-type(n+3),
+.slider.active[data-slides="3"] ~ .slider_dots .dot:nth-of-type(n+4),
+.slider.active[data-slides="4"] ~ .slider_dots .dot:nth-of-type(n+5),
+.slider.active[data-slides="5"] ~ .slider_dots .dot:nth-of-type(n+6),
+.slider.active[data-slides="6"] ~ .slider_dots .dot:nth-of-type(n+7),
+.slider.active[data-slides="7"] ~ .slider_dots .dot:nth-of-type(n+8) {
+    display: none;
+}
+
+.testimonial {
+    background-color: #f3f3f3;
+    text-align: center;
+    padding: 20px;
+}
+
+.testimonial p {
+    font-size: 1.3em;
+}
+
+.testimonial .author {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+@media (min-width: 992px) {
+
+    nav {
+        display: block;
+        position: relative;
+        top: auto;
+        left: auto;
+        height: auto;
+        width: auto;
+        background-color: transparent;
+        padding: 0 40px 0 0;
+        align-self: center;
+    }
+
+    nav a {
+        color: #000;
+        display: inline;
+        padding-left: 60px;
+        text-decoration: none;
+    }
+
+    nav .line {
+        display: none;
+    }
+
+    .menu_toggle {
+        display: none;
+    }
+
+    #intro .categories {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

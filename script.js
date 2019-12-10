@@ -68,6 +68,109 @@ function loadIntro() {
     });
 }
 
+let clientXBefore = 0;
+document.querySelectorAll('.slider').forEach((slider) => {
+    slider.addEventListener('touchstart', (e) => {
+        console.log('X koordinat ved slider bevægelses start', e.touches[0].clientX);
+        clientXBefore = e.touches[0].clientX;
+    });
+});
+
+document.querySelectorAll('.slider').forEach((slider) => {
+    slider.addEventListener('touchend', (e) => {
+        console.log('X koordinat ved slider bevægelses slutning', e.changedTouches[0].clientX);
+        if (clientXBefore > (e.changedTouches[0].clientX + 50)) {
+            console.log('Da X ved start var større end ved slut, blev slideren bevæget mod venstre');
+            slideNext(slider);
+        } else if (clientXBefore < (e.changedTouches[0].clientX - 50)) {
+            console.log('Da X ved start var mindre end ved slut, blev slideren bevæget mod højre');
+            slidePrev(slider);
+        }
+    });
+});
+
+function slideNext(slider) {
+    let slides = slider.getAttribute('data-slides');
+    let active = slider.getAttribute('data-active');
+
+    if (active >= slides) {
+        active = 1;
+    } else {
+        active++;
+    }
+    slider.setAttribute('data-active', active);
+
+    if (slider.querySelector('.next').nextElementSibling !== null) {
+        slider.querySelector('.next').nextElementSibling.classList.add('next');
+    } else {
+        slider.firstElementChild.classList.add('next');
+    }
+
+    slider.querySelector('.prev').classList.add('prev_removeafter');
+
+    if (slider.querySelector('.prev_removeafter').nextElementSibling !== null) {
+        slider.querySelector('.prev_removeafter').nextElementSibling.classList.add('prev');
+    } else {
+        slider.firstElementChild.classList.add('prev');
+    }
+
+    slider.querySelector('.active').classList.add('active_removeafter');
+
+    if (slider.querySelector('.active_removeafter').nextElementSibling !== null) {
+        slider.querySelector('.active_removeafter').nextElementSibling.classList.remove('next');
+        slider.querySelector('.active_removeafter').nextElementSibling.classList.add('active');
+    } else {
+        slider.firstElementChild.classList.remove('next');
+        slider.firstElementChild.classList.add('active');
+    }
+
+    slider.querySelector('.active_removeafter').classList.remove('active');
+    slider.querySelector('.active_removeafter').classList.remove('active_removeafter');
+    slider.querySelector('.prev_removeafter').classList.remove('prev');
+    slider.querySelector('.prev_removeafter').classList.remove('prev_removeafter');
+}
+
+function slidePrev(slider) {
+    let slides = slider.getAttribute('data-slides');
+    let active = slider.getAttribute('data-active');
+
+    if (active <= 1) {
+        active = slides;
+    } else {
+        active--;
+    }
+    slider.setAttribute('data-active', active);
+
+
+    if (slider.querySelector('.prev').previousElementSibling !== null) {
+        slider.querySelector('.prev').previousElementSibling.classList.add('prev');
+    } else {
+        slider.lastElementChild.classList.add('prev');
+    }
+
+    slider.querySelector('.next').classList.add('next_removeafter');
+
+    if (slider.querySelector('.next_removeafter').previousElementSibling !== null) {
+        slider.querySelector('.next_removeafter').previousElementSibling.classList.add('next');
+    } else {
+        slider.lastElementChild.classList.add('next');
+    }
+
+    slider.querySelector('.active').classList.add('active_removeafter');
+
+    if (slider.querySelector('.active_removeafter').previousElementSibling !== null) {
+        slider.querySelector('.active_removeafter').previousElementSibling.classList.remove('prev');
+        slider.querySelector('.active_removeafter').previousElementSibling.classList.add('active');
+    } else {
+        slider.lastElementChild.classList.remove('prev');
+        slider.lastElementChild.classList.add('active');
+    }
+
+    slider.querySelector('.active_removeafter').classList.remove('active');
+    slider.querySelector('.active_removeafter').classList.remove('active_removeafter');
+    slider.querySelector('.next_removeafter').classList.remove('next');
+    slider.querySelector('.next_removeafter').classList.remove('next_removeafter');
+}
 
 //let kategori = [];
 //let urlParams = new URLSearchParams(window.location.search);
