@@ -10,6 +10,9 @@ const navList = document.querySelector("nav");
 const galleryTemp = document.querySelector(".gallery_template");
 const testimonialTemp = document.querySelector(".testimonial_template");
 const aboutTemp = document.querySelector(".about_template");
+const facebookTemp = document.querySelector(".facebook_template");
+const instagramTemp = document.querySelector(".instagram_template");
+const linkedinTemp = document.querySelector(".linkedin_template");
 
 window.addEventListener("DOMContentLoaded", start);
 
@@ -25,6 +28,11 @@ function start() {
     getIntroJson();
     getGalleriesJson();
     getAboutJson();
+    getInterviewJson();
+    getEventsJson();
+    getDirectionsJson();
+    getFooterJson();
+    getHoursJson();
 }
 
 async function getNavJson() {
@@ -208,6 +216,119 @@ function loadAbout() {
         clone.querySelector("img").alt = aboutItem.img.post_name;
         document.querySelector(".about_container").appendChild(clone);
         //document.querySelector("body").insertBefore(clone, document.querySelector(".about"));
+    });
+}
+
+async function getInterviewJson() {
+    const response = await fetch("https://www.pindbodesign.dk/ligelinjer/wordpress/wp-json/wp/v2/interview");
+    interviewItems = await response.json();
+    loadInterview();
+}
+
+function loadInterview() {
+    interviewItems.forEach(interviewItem => {
+        document.querySelector("#interview h1").textContent = interviewItem.title.rendered;
+        document.querySelector("#interview video source").src = interviewItem.video.guid;
+        document.querySelector("#interview .quote").textContent = interviewItem.text;
+        document.querySelector("#interview .author").textContent = "- " + interviewItem.by;
+        document.querySelector("#interview video").load();
+    });
+}
+
+
+async function getEventsJson() {
+    const response = await fetch("https://www.pindbodesign.dk/ligelinjer/wordpress/wp-json/wp/v2/events");
+    eventItems = await response.json();
+    loadEvents();
+}
+
+function loadEvents() {
+    eventItems.forEach(eventItem => {
+        document.querySelector("#events h1").textContent = eventItem.title.rendered;
+        document.querySelector("#events .text").textContent = eventItem.text;
+        document.querySelector("#events img").src = eventItem.img.guid;
+        document.querySelector("#events img").alt = eventItem.img.post_name;
+        if (eventItem.facebook == 1 || eventItem.instagram == 1 || eventItem.linkedin == 1) {
+            if (eventItem.facebook == 1) {
+                let clone = facebookTemp.cloneNode(true).content;
+                document.querySelector("#events .some_icons").appendChild(clone);
+            }
+            if (eventItem.instagram == 1) {
+                let clone = instagramTemp.cloneNode(true).content;
+                document.querySelector("#events .some_icons").appendChild(clone);
+            }
+            if (eventItem.linkedin == 1) {
+                let clone = linkedinTemp.cloneNode(true).content;
+                document.querySelector("#events .some_icons").appendChild(clone);
+            }
+        } else {
+            document.querySelector("#events .follow").classList.add("hidden");
+            document.querySelector("#events .some_icons").classList.add("hidden");
+        }
+    });
+}
+
+async function getDirectionsJson() {
+    const response = await fetch("https://www.pindbodesign.dk/ligelinjer/wordpress/wp-json/wp/v2/directions");
+    directionsItems = await response.json();
+    loadDirections();
+}
+
+function loadDirections() {
+    directionsItems.forEach(directionsItem => {
+        document.querySelector("#directions h1").textContent = directionsItem.title.rendered;
+        document.querySelector("#directions .text1").textContent = directionsItem.text1;
+        document.querySelector("#directions .text2").textContent = directionsItem.text2;
+        document.querySelector("#directions button").textContent = directionsItem.button;
+
+    });
+}
+
+async function getFooterJson() {
+    const response = await fetch("https://www.pindbodesign.dk/ligelinjer/wordpress/wp-json/wp/v2/footer");
+    footerItems = await response.json();
+    loadFooter();
+}
+
+function loadFooter() {
+    footerItems.forEach(footerItem => {
+        document.querySelector("#footer .column1 h1").textContent = footerItem.title.rendered;
+        document.querySelector("#footer .column1 .address p").textContent = footerItem.address;
+        document.querySelector("#footer .column1 .phone p").textContent = footerItem.phone;
+        document.querySelector("#footer .column1 .cvr p").textContent = footerItem.cvr;
+        if (footerItem.facebook == 1 || footerItem.instagram == 1 || footerItem.linkedin == 1) {
+            if (footerItem.facebook == 1) {
+                let clone = facebookTemp.cloneNode(true).content;
+                document.querySelector("#footer .column3 .some_icons").appendChild(clone);
+            }
+            if (footerItem.instagram == 1) {
+                let clone = instagramTemp.cloneNode(true).content;
+                document.querySelector("#footer .column3 .some_icons").appendChild(clone);
+            }
+            if (footerItem.linkedin == 1) {
+                let clone = linkedinTemp.cloneNode(true).content;
+                document.querySelector("#footer .column3 .some_icons").appendChild(clone);
+            }
+        } else {
+            document.querySelector("#footer .column3").classList.add("hidden");
+        }
+    });
+}
+
+async function getHoursJson() {
+    const response = await fetch("https://www.pindbodesign.dk/ligelinjer/wordpress/wp-json/wp/v2/hours");
+    hoursItems = await response.json();
+    loadHours();
+}
+
+function loadHours() {
+    hoursItems.forEach(hoursItem => {
+        if (hoursItem.open == "") {
+            document.querySelector("#footer .hours ." + hoursItem.slug).textContent = "Lukket";
+        } else {
+            document.querySelector("#footer .hours ." + hoursItem.slug).textContent = hoursItem.open + "-" + hoursItem.close;
+        }
+
     });
 }
 
