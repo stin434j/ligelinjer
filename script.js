@@ -67,7 +67,7 @@ function loadSplash() {
         document.querySelector("#splash video source").src = splashItem.background.guid;
         document.querySelector("#splash h1").textContent = splashItem.headline;
         document.querySelector("#splash p").textContent = splashItem.subheadline;
-        document.querySelector("#splash button").textContent = splashItem.button;
+        document.querySelector("#splash .button").textContent = splashItem.button;
     });
 }
 
@@ -103,6 +103,7 @@ function loadGalleries() {
         clone.querySelector(".slider2_headline").innerHTML = galleriesItem.slider2name;
         clone.querySelector(".slider2_text").innerHTML = galleriesItem.slider2text;
         clone.querySelector(".gallery_cta em").textContent = galleriesItem.cta;
+        clone.querySelector(".button").textContent = galleriesItem.button;
         clone.querySelector(".tabs .active").setAttribute("data-name", galleriesItem.slider1name);
         clone.querySelector(".tabs .active h4").textContent = galleriesItem.slider1name;
         clone.querySelector(".tabs .tab:not(.active)").setAttribute("data-name", galleriesItem.slider2name);
@@ -121,7 +122,7 @@ function loadGalleries() {
             imageCounter++;
             clone.querySelector(".slider:not(.active)").innerHTML += '<div class="slide slide' + imageCounter + '"><img src="' + image.guid + '" alt="' + image.post_name + '"></div>';
         });
-        document.querySelector(".gallery_container").appendChild(clone);
+        document.querySelector("#gallery_container").appendChild(clone);
         //document.querySelector("body").insertBefore(clone, document.querySelector(".about"));
     });
 
@@ -180,8 +181,8 @@ function loadTestimonials() {
         testimonialCounter++;
         if (testimonialCounter < maxTestimonials) {
             let clone = testimonialTemp.cloneNode(true).content;
-            clone.querySelector(".author").textContent = testimonialItem.title.rendered;
-            clone.querySelector(".quote").textContent = testimonialItem.testimonial;
+            clone.querySelector(".author").textContent = "- " + testimonialItem.title.rendered;
+            clone.querySelector(".quote em").textContent = testimonialItem.testimonial;
             let galleryNode = document.querySelector(".gallery" + testimonialCounter);
             galleryNode.parentNode.insertBefore(clone, galleryNode.nextSibling);
         }
@@ -214,7 +215,7 @@ function loadAbout() {
         }
         clone.querySelector("img").src = aboutItem.img.guid;
         clone.querySelector("img").alt = aboutItem.img.post_name;
-        document.querySelector(".about_container").appendChild(clone);
+        document.querySelector("#about_container").appendChild(clone);
         //document.querySelector("body").insertBefore(clone, document.querySelector(".about"));
     });
 }
@@ -246,19 +247,23 @@ function loadEvents() {
     eventItems.forEach(eventItem => {
         document.querySelector("#events h1").textContent = eventItem.title.rendered;
         document.querySelector("#events .text").textContent = eventItem.text;
+        console.log(eventItem);
         document.querySelector("#events img").src = eventItem.img.guid;
         document.querySelector("#events img").alt = eventItem.img.post_name;
         if (eventItem.facebook == 1 || eventItem.instagram == 1 || eventItem.linkedin == 1) {
             if (eventItem.facebook == 1) {
                 let clone = facebookTemp.cloneNode(true).content;
+                clone.querySelector(".some_icon").classList.add("black");
                 document.querySelector("#events .some_icons").appendChild(clone);
             }
             if (eventItem.instagram == 1) {
                 let clone = instagramTemp.cloneNode(true).content;
+                clone.querySelector(".some_icon").classList.add("black");
                 document.querySelector("#events .some_icons").appendChild(clone);
             }
             if (eventItem.linkedin == 1) {
                 let clone = linkedinTemp.cloneNode(true).content;
+                clone.querySelector(".some_icon").classList.add("black");
                 document.querySelector("#events .some_icons").appendChild(clone);
             }
         } else {
@@ -279,7 +284,7 @@ function loadDirections() {
         document.querySelector("#directions h1").textContent = directionsItem.title.rendered;
         document.querySelector("#directions .text1").textContent = directionsItem.text1;
         document.querySelector("#directions .text2").textContent = directionsItem.text2;
-        document.querySelector("#directions button").textContent = directionsItem.button;
+        document.querySelector("#directions .button").textContent = directionsItem.button;
 
     });
 }
@@ -292,25 +297,28 @@ async function getFooterJson() {
 
 function loadFooter() {
     footerItems.forEach(footerItem => {
-        document.querySelector("#footer .column1 h1").textContent = footerItem.title.rendered;
-        document.querySelector("#footer .column1 .address p").textContent = footerItem.address;
-        document.querySelector("#footer .column1 .phone p").textContent = footerItem.phone;
-        document.querySelector("#footer .column1 .cvr p").textContent = footerItem.cvr;
+        document.querySelector("footer .column1 h1").textContent = footerItem.title.rendered;
+        document.querySelector("footer .column1 .address p").textContent = footerItem.address;
+        document.querySelector("footer .column1 .phone p").textContent = footerItem.phone;
+        document.querySelector("footer .column1 .cvr p").textContent = footerItem.cvr;
         if (footerItem.facebook == 1 || footerItem.instagram == 1 || footerItem.linkedin == 1) {
             if (footerItem.facebook == 1) {
                 let clone = facebookTemp.cloneNode(true).content;
-                document.querySelector("#footer .column3 .some_icons").appendChild(clone);
+                clone.querySelector(".some_icon").classList.add("white");
+                document.querySelector("footer .column3 .some_icons").appendChild(clone);
             }
             if (footerItem.instagram == 1) {
                 let clone = instagramTemp.cloneNode(true).content;
-                document.querySelector("#footer .column3 .some_icons").appendChild(clone);
+                clone.querySelector(".some_icon").classList.add("white");
+                document.querySelector("footer .column3 .some_icons").appendChild(clone);
             }
             if (footerItem.linkedin == 1) {
                 let clone = linkedinTemp.cloneNode(true).content;
-                document.querySelector("#footer .column3 .some_icons").appendChild(clone);
+                clone.querySelector(".some_icon").classList.add("white");
+                document.querySelector("footer .column3 .some_icons").appendChild(clone);
             }
         } else {
-            document.querySelector("#footer .column3").classList.add("hidden");
+            document.querySelector("footer .column3").classList.add("hidden");
         }
     });
 }
@@ -324,9 +332,9 @@ async function getHoursJson() {
 function loadHours() {
     hoursItems.forEach(hoursItem => {
         if (hoursItem.open == "") {
-            document.querySelector("#footer .hours ." + hoursItem.slug).textContent = "Lukket";
+            document.querySelector("footer .hours ." + hoursItem.slug).textContent = "Lukket";
         } else {
-            document.querySelector("#footer .hours ." + hoursItem.slug).textContent = hoursItem.open + "-" + hoursItem.close;
+            document.querySelector("footer .hours ." + hoursItem.slug).textContent = hoursItem.open + "-" + hoursItem.close;
         }
 
     });
