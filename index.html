@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lige Linjer</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/favicon.jpg">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
         <nav>
             <template class="nav_template">
                 <a href=""></a>
-                <div class="line full white"></div>
+                <div class="line full gold_light"></div>
             </template>
         </nav>
         <div class="menu_toggle">
@@ -29,8 +30,11 @@
         </div>
     </header>
     <section id="splash">
-        <video autoplay muted loop>
-            <source src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/splashvideo_f%C3%B8rsteudgave.mp4">
+        <video class="desktop" autoplay muted loop>
+            <source src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/MVI_9942_1.mp4">
+        </video>
+        <video class="mobile" autoplay muted loop>
+            <source src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/Sequence-01.mp4">
         </video>
         <div class="content">
             <h1></h1>
@@ -45,35 +49,11 @@
         <div class="line short gold_dark"></div>
         <div class="categories">
             <template class="category_template">
-                <div class="category">
-                    <div class="headline"></div>
+                <a href="" class="category">
                     <div class="img"></div>
-                </div>
+                    <div class="headline"></div>
+                </a>
             </template>
-            <div class="category">
-                <div class="headline">
-                    <h4>Illustrationer og portrætter</h4>
-                </div>
-                <div class="img"><img src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/elbike_tekst-1.jpg" alt=""></div>
-            </div>
-            <div class="category">
-                <div class="headline">
-                    <h4>Tryk af illustrationer</h4>
-                </div>
-                <div class="img"><img src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/elbike_tekst-1.jpg" alt=""></div>
-            </div>
-            <div class="category">
-                <div class="headline">
-                    <h4>Begivenheder</h4>
-                </div>
-                <div class="img"><img src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/elbike_tekst-1.jpg" alt=""></div>
-            </div>
-            <div class="category">
-                <div class="headline">
-                    <h4>Infografik og grafiske illustrationer</h4>
-                </div>
-                <div class="img"><img src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/elbike_tekst-1.jpg" alt=""></div>
-            </div>
         </div>
     </section>
     <div id="gallery_container"></div>
@@ -81,22 +61,28 @@
     <section id="interview">
         <h1></h1>
         <div class="line long gold_dark"></div>
-        <video controls>
-            <source src="">
-        </video>
+        <div class="video">
+            <video controls>
+                <source src="">
+            </video>
+        </div>
         <div class="line long gold_dark"></div>
         <p class="quote"><em></em></p>
         <p class="author"></p>
         <div class="line long gold_dark"></div>
     </section>
     <section id="events">
-        <h1></h1>
-        <div class="line long gold"></div>
-        <p class="text"></p>
-        <div class="line short gold"></div>
-        <p class="follow"><strong>Følg events på</strong></p>
-        <div class="some_icons"></div>
-        <img src="" alt="">
+        <div class="description">
+            <h1></h1>
+            <div class="line long gold"></div>
+            <p class="text"></p>
+            <div class="line short gold"></div>
+            <p class="follow"><strong>Følg events på</strong></p>
+            <div class="some_icons"></div>
+        </div>
+        <div class="img">
+            <img src="" alt="">
+        </div>
     </section>
     <section id="directions">
         <h1></h1>
@@ -193,6 +179,8 @@
             </div>
             <div class="images">
                 <div class="slider active" data-name="" data-slides="" data-active="0">
+                    <div class="slider_prev"></div>
+                    <div class="slider_next"></div>
                     <div class="slider_dots">
                         <div class="dot" data-slide="1"></div>
                         <div class="dot" data-slide="2"></div>
@@ -205,6 +193,8 @@
                     </div>
                 </div>
                 <div class="slider" data-name="" data-slides="" data-active="0">
+                    <div class="slider_prev"></div>
+                    <div class="slider_next"></div>
                     <div class="slider_dots">
                         <div class="dot" data-slide="1"></div>
                         <div class="dot" data-slide="2"></div>
@@ -229,14 +219,18 @@
     </template>
     <template class="about_template">
         <section class="about">
-            <h1></h1>
-            <div class="line long gold_light"></div>
-            <p class="text1"></p>
-            <p class="text2"></p>
-            <p class="text3"></p>
-            <p class="text4"></p>
-            <p class="text5"></p>
-            <img src="" alt="">
+            <div class="description">
+                <h1></h1>
+                <div class="line long gold_light"></div>
+                <p class="text1"></p>
+                <p class="text2"></p>
+                <p class="text3"></p>
+                <p class="text4"></p>
+                <p class="text5"></p>
+            </div>
+            <div class="img">
+                <img src="" alt="">
+            </div>
         </section>
     </template>
     <template class="facebook_template">

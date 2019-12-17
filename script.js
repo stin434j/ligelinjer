@@ -1,12 +1,14 @@
 let navItems = [];
 let splashItems = [];
 let introItems = [];
+let categoryItems = [];
 let galleriesItems = [];
 let testimonialItems = [];
 let aboutItems = [];
 let clientXBefore = 0;
 const navTemp = document.querySelector(".nav_template");
 const navList = document.querySelector("nav");
+const categoryTemp = document.querySelector(".category_template");
 const galleryTemp = document.querySelector(".gallery_template");
 const testimonialTemp = document.querySelector(".testimonial_template");
 const aboutTemp = document.querySelector(".about_template");
@@ -95,7 +97,15 @@ function loadGalleries() {
     let galleryCounter = 0;
     galleriesItems.forEach(galleriesItem => {
         galleryCounter++;
+        // Tilføj galleri punkt til #intro sektionen
+        let categoryClone = categoryTemp.cloneNode(true).content;
+        categoryClone.querySelector("a.category").href = "#gallery" + galleryCounter;
+        categoryClone.querySelector(".img").innerHTML = '<img src="' + galleriesItem.slider1imgs[0].guid + '" alt="' + galleriesItem.slider1imgs[0].post_name + '">';
+        categoryClone.querySelector(".headline").innerHTML = galleriesItem.title.rendered;
+        document.querySelector("#intro .categories").appendChild(categoryClone);
+        // Indlæs galleri sektioner
         let clone = galleryTemp.cloneNode(true).content;
+        clone.querySelector("section").id = "gallery" + galleryCounter;
         clone.querySelector("section").classList.add("gallery" + galleryCounter);
         clone.querySelector(".description h1").innerHTML = galleriesItem.title.rendered;
         clone.querySelector(".slider1_headline").innerHTML = galleriesItem.slider1name;
@@ -123,10 +133,15 @@ function loadGalleries() {
             clone.querySelector(".slider:not(.active)").innerHTML += '<div class="slide slide' + imageCounter + '"><img src="' + image.guid + '" alt="' + image.post_name + '"></div>';
         });
         document.querySelector("#gallery_container").appendChild(clone);
-        //document.querySelector("body").insertBefore(clone, document.querySelector(".about"));
     });
 
     document.querySelectorAll('.slider').forEach((slider) => {
+        slider.querySelector(".slider_next").addEventListener('click', () => {
+            slideNext(slider);
+        });
+        slider.querySelector(".slider_prev").addEventListener('click', () => {
+            slidePrev(slider);
+        });
         slider.addEventListener('touchstart', (e) => {
             console.log('X koordinat ved slider bevægelses start', e.touches[0].clientX);
             clientXBefore = e.touches[0].clientX;
@@ -141,6 +156,7 @@ function loadGalleries() {
                 slidePrev(slider);
             }
         });
+
         slideNext(slider);
     });
 
@@ -179,7 +195,7 @@ function loadTestimonials() {
     let maxTestimonials = document.querySelectorAll(".gallery").length;
     testimonialItems.forEach(testimonialItem => {
         testimonialCounter++;
-        if (testimonialCounter < maxTestimonials) {
+        if (testimonialCounter <= maxTestimonials) {
             let clone = testimonialTemp.cloneNode(true).content;
             clone.querySelector(".author").textContent = "- " + testimonialItem.title.rendered;
             clone.querySelector(".quote em").textContent = testimonialItem.testimonial;
@@ -230,7 +246,7 @@ function loadInterview() {
     interviewItems.forEach(interviewItem => {
         document.querySelector("#interview h1").textContent = interviewItem.title.rendered;
         document.querySelector("#interview video source").src = interviewItem.video.guid;
-        document.querySelector("#interview .quote").textContent = interviewItem.text;
+        document.querySelector("#interview .quote em").textContent = interviewItem.text;
         document.querySelector("#interview .author").textContent = "- " + interviewItem.by;
         document.querySelector("#interview video").load();
     });
@@ -298,8 +314,8 @@ async function getFooterJson() {
 function loadFooter() {
     footerItems.forEach(footerItem => {
         document.querySelector("footer .column1 h1").textContent = footerItem.title.rendered;
-        document.querySelector("footer .column1 .address p").textContent = footerItem.address;
-        document.querySelector("footer .column1 .phone p").textContent = footerItem.phone;
+        document.querySelector("footer .column1 .address p").innerHTML = '<a href="https://maps.google.com/?q=' + footerItem.address + '" target="_blank">' + footerItem.address + '</a>';
+        document.querySelector("footer .column1 .phone p").innerHTML = '<a href="tel:' + footerItem.phone + '">' + footerItem.phone + '</a>';
         document.querySelector("footer .column1 .cvr p").textContent = footerItem.cvr;
         if (footerItem.facebook == 1 || footerItem.instagram == 1 || footerItem.linkedin == 1) {
             if (footerItem.facebook == 1) {
