@@ -388,12 +388,30 @@ header nav.active ~ .menu_toggle span:nth-child(1) {
     color: #000;
 }
 
+#intro h1 {
+    margin: 50px 0 50px 0;
+}
+
+#intro p {
+    margin: 50px 0 50px 0;
+}
+
+#intro .line {
+    margin: 0 0 50px 0;
+
+}
+
+#intro .short line {
+    margin: 0 0 50px 0;
+}
+
+
 #intro .categories {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 25px;
+    grid-column-gap: 30px;
+    grid-row-gap: 15px;
 }
 
 #intro .categories .category {
@@ -583,10 +601,14 @@ header nav.active ~ .menu_toggle span:nth-child(1) {
     display: none;
 }
 
+.testimonial .line {
+    margin: 50px 0
+}
+
 .testimonial {
     background-color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 40px;
     color: #aa7c02;
 }
 
@@ -737,6 +759,8 @@ footer table {
 
     #intro .categories {
         grid-row-gap: 25px;
+        margin: 0px 100px;
+        padding: 60px 0;
     }
 
     #intro .categories .img {
