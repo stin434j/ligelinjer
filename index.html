@@ -4,23 +4,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lige Linjer</title>
+    <meta name="description" content="Lige Linjer - Din illustrator på Nørrebro. Jeg laver alt i protrætter, illustrationer og grafisk arbejde.">
+    <title>Lige Linjer | Din illustrator på Nørrebro</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="images/favicon.jpg">
 </head>
 
+<!--
+<div id="logo">
+    <a href="index.html">
+        <img src="images/koga_logo.svg" alt="sitelogo">
+    </a>
+</div>
+-->
+
+
 <body>
     <header>
         <div class="logo">
-            <img src="images/lige-linjer-logo.png" alt="Lige Linjer logo">
+            <a href="index.html">
+                <img src="images/lige-linjer-logo-60.png" alt="logo"></a>
             <h1>Lige Linjer</h1>
             <p>Din illustrator på Nørrebro</p>
         </div>
         <nav>
-            <template class="nav_template">
-                <a href=""></a>
-                <div class="line full gold_light"></div>
-            </template>
         </nav>
         <div class="menu_toggle">
             <!-- Tre spans til at lave stregerne i burger menuen -->
@@ -31,7 +38,7 @@
     </header>
     <section id="splash">
         <video class="desktop" autoplay muted loop>
-            <source src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/MVI_9942_1.mp4">
+            <source src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/splash.mp4">
         </video>
         <video class="mobile" autoplay muted loop>
             <source src="https://www.pindbodesign.dk/ligelinjer/wordpress/wp-content/uploads/2019/12/Sequence-01.mp4">
@@ -48,12 +55,6 @@
         <p></p>
         <div class="line short gold_dark"></div>
         <div class="categories">
-            <template class="category_template">
-                <a href="" class="category">
-                    <div class="img"></div>
-                    <div class="headline"></div>
-                </a>
-            </template>
         </div>
     </section>
     <div id="gallery_container"></div>
@@ -67,7 +68,7 @@
             </video>
         </div>
         <div class="line long gold_dark"></div>
-        <p class="quote"><em></em></p>
+        <h2 class="quote"><em></em></h2>
         <p class="author"></p>
         <div class="line long gold_dark"></div>
     </section>
@@ -90,7 +91,7 @@
         <p class="text1"></p>
         <p class="text2"></p>
         <a href="#footer" class="button"></a>
-        <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCusSJn9N1WYqKDv__J6rQ0O2phJeh4EQA&q=Lige+Linjer,Fenmarksgade 38a,2200" allowfullscreen>
+        <iframe width="600" height="450" title="Kort over Lige Linjers placering på Google Maps" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCusSJn9N1WYqKDv__J6rQ0O2phJeh4EQA&q=Lige+Linjer,Fenmarksgade+38a,2200" allowfullscreen>
         </iframe>
     </section>
     <footer id="footer">
@@ -103,6 +104,10 @@
             </div>
             <div class="phone">
                 <h3>Telefon nr.</h3>
+                <p></p>
+            </div>
+            <div class="mail">
+                <h3>E-mail.</h3>
                 <p></p>
             </div>
             <div class="cvr">
@@ -154,11 +159,21 @@
             <div class="some_icons"></div>
         </div>
     </footer>
+    <template class="nav_template">
+        <a href=""></a>
+        <div class="line long gold_light"></div>
+    </template>
+    <template class="category_template">
+        <a href="" class="category">
+            <div class="img"></div>
+            <div class="headline"></div>
+        </a>
+    </template>
     <template class="gallery_template">
         <section class="gallery">
             <div class="description">
                 <h1 class="gallery_headline"></h1>
-                <div class="line full gold"></div>
+                <div class="line long gold"></div>
                 <div class="gallery_text">
                     <h2 class="slider1_headline"></h2>
                     <p class="slider1_text">></p>
@@ -212,7 +227,7 @@
     <template class="testimonial_template">
         <section class="testimonial">
             <div class="line long gold_dark"></div>
-            <p class="quote"><em></em></p>
+            <h2 class="quote"><em></em></h2>
             <p class="author"></p>
             <div class="line long gold_dark"></div>
         </section>

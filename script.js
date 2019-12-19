@@ -135,6 +135,12 @@ function loadGalleries() {
         document.querySelector("#gallery_container").appendChild(clone);
     });
 
+    initSliders();
+    initTabs();
+    getTestimonialJson();
+}
+
+function initSliders() {
     document.querySelectorAll('.slider').forEach((slider) => {
         slider.querySelector(".slider_next").addEventListener('click', () => {
             slideNext(slider);
@@ -142,24 +148,30 @@ function loadGalleries() {
         slider.querySelector(".slider_prev").addEventListener('click', () => {
             slidePrev(slider);
         });
-        slider.addEventListener('touchstart', (e) => {
-            console.log('X koordinat ved slider bevægelses start', e.touches[0].clientX);
-            clientXBefore = e.touches[0].clientX;
+        slider.addEventListener('touchstart', (event) => {
+            console.log('X koordinat ved slider bevægelses start', event.touches[0].clientX);
+            clientXBefore = event.touches[0].clientX;
+        }, {
+            passive: true
         });
-        slider.addEventListener('touchend', (e) => {
-            console.log('X koordinat ved slider bevægelses slutning', e.changedTouches[0].clientX);
-            if (clientXBefore > (e.changedTouches[0].clientX + 50)) {
+        slider.addEventListener('touchend', (event) => {
+            console.log('X koordinat ved slider bevægelses slutning', event.changedTouches[0].clientX);
+            if (clientXBefore > (event.changedTouches[0].clientX + 50)) {
                 console.log('Da X ved start var større end ved slut, blev slideren bevæget mod venstre');
                 slideNext(slider);
-            } else if (clientXBefore < (e.changedTouches[0].clientX - 50)) {
+            } else if (clientXBefore < (event.changedTouches[0].clientX - 50)) {
                 console.log('Da X ved start var mindre end ved slut, blev slideren bevæget mod højre');
                 slidePrev(slider);
             }
+        }, {
+            passive: true
         });
 
         slideNext(slider);
     });
+}
 
+function initTabs() {
     document.querySelectorAll(".gallery").forEach((gallery) => {
         gallery.querySelectorAll(".tab").forEach((tab) => {
             tab.addEventListener("click", (e) => {
@@ -180,8 +192,6 @@ function loadGalleries() {
             });
         });
     });
-
-    getTestimonialJson();
 }
 
 async function getTestimonialJson() {
@@ -314,8 +324,9 @@ async function getFooterJson() {
 function loadFooter() {
     footerItems.forEach(footerItem => {
         document.querySelector("footer .column1 h1").textContent = footerItem.title.rendered;
-        document.querySelector("footer .column1 .address p").innerHTML = '<a href="https://maps.google.com/?q=' + footerItem.address + '" target="_blank">' + footerItem.address + '</a>';
+        document.querySelector("footer .column1 .address p").innerHTML = '<a href="https://maps.google.com/?q=' + footerItem.address + '" target="_blank" rel="noopener noreferrer">' + footerItem.address + '</a>';
         document.querySelector("footer .column1 .phone p").innerHTML = '<a href="tel:' + footerItem.phone + '">' + footerItem.phone + '</a>';
+        document.querySelector("footer .column1 .mail p").innerHTML = '<a href="mailto:' + footerItem.mail + '">' + footerItem.mail + '</a>';
         document.querySelector("footer .column1 .cvr p").textContent = footerItem.cvr;
         if (footerItem.facebook == 1 || footerItem.instagram == 1 || footerItem.linkedin == 1) {
             if (footerItem.facebook == 1) {
