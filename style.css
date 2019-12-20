@@ -29,6 +29,10 @@ video.desktop,
     display: none;
 }
 
+.hidden {
+    display: none;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -207,7 +211,6 @@ header {
     grid-template-rows: auto;
     grid-template-areas:
         "logo burger";
-
 }
 
 header .logo {
@@ -274,11 +277,9 @@ nav .line:before {
 }
 
 /* burger menu */
-
 .menu_toggle {
     grid-area: burger;
     align-self: center;
-    /*  float: right;*/
     cursor: pointer;
     height: 16px;
     margin: 16px;
@@ -367,11 +368,9 @@ header nav.active ~ .menu_toggle span:nth-child(1) {
     margin: 1em 0;
 }
 
-
 #splash .content h1 {
     font-size: 6rem;
 }
-
 
 #splash .button {
     border-color: #fff;
@@ -393,13 +392,11 @@ header nav.active ~ .menu_toggle span:nth-child(1) {
 
 #intro .line {
     margin: 0 0 50px 0;
-
 }
 
 #intro .short line {
     margin: 0 0 50px 0;
 }
-
 
 #intro .categories {
     display: grid;
@@ -801,21 +798,21 @@ footer table {
         transform: rotate(-90deg) translateX(100%) translateY(1px);
     }
 
-    .gallery.gallery1 .description,
-    .gallery.gallery3 .description,
-    .gallery.gallery5 .description {
+    #gallery1 .description,
+    #gallery3 .description,
+    #gallery5 .description {
         padding: 40px 40px 40px 100px;
     }
 
-    .gallery.gallery1 .images,
-    .gallery.gallery3 .images,
-    .gallery.gallery5 .images {
+    #gallery1 .images,
+    #gallery3 .images,
+    #gallery5 .images {
         order: -1;
     }
 
-    .gallery.gallery1 .tabs,
-    .gallery.gallery3 .tabs,
-    .gallery.gallery5 .tabs {
+    #gallery1 .tabs,
+    #gallery3 .tabs,
+    #gallery5 .tabs {
         transform-origin: bottom left;
         transform: rotate(90deg) translateX(-100%) translateY(1px);
     }
