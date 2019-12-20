@@ -365,7 +365,7 @@ function initTabs() {
                 // Vi definere en variabel thisTab, som skal gemme en reference til den tab der er trykket på
                 let thisTab;
                 // Vi starter med at kigge på om elementet der er klikket på har et child, hvis ikke
-                if (e.target.firstElementChild == null) {
+                if (event.target.firstElementChild == null) {
                     // så skal vi have fat dette elements forælder, da der så er trykket på h2 tagget inde i tab'en og ikke selve tab'en
                     thisTab = event.target.parentElement;
                 } else {
